@@ -11,14 +11,13 @@ import InputTodo from './InputTodo';
 import TodosList from './TodosList';
 
 const TodoContainer = () => {
-  const [todos, setTodos] = useState(getInitialTodos());
-
-  function getInitialTodos() {
-    // getting stored items
+  const getInitialTodos = () => {
     const temp = localStorage.getItem('todos');
     const savedTodos = JSON.parse(temp);
     return savedTodos || [];
-  }
+  };
+
+  const [todos, setTodos] = useState(getInitialTodos());
 
   const handleChange = (id) => {
     setTodos((prevState) => prevState.map((todo) => {
@@ -50,10 +49,16 @@ const TodoContainer = () => {
   const setUpdate = (updatedTitle, id) => {
     setTodos(
       todos.map((todo) => {
+        let updatedTodo = todo;
+
         if (todo.id === id) {
-          todo.title = updatedTitle;
+          updatedTodo = {
+            ...todo,
+            title: updatedTitle,
+          };
         }
-        return todo;
+
+        return updatedTodo;
       }),
     );
   };

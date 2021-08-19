@@ -16,12 +16,12 @@ const InputTodo = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputText.title.trim()) {
-      props.addTodoProps(inputText.title);
+      props.addTodoProps(inputText.title); /* eslint-disable-line react/prop-types */
       setInputText({
         title: '',
       });
     } else {
-      alert('Please write item');
+      alert('Please write item'); /* eslint-disable-line no-alert */
     }
   };
 
@@ -35,7 +35,7 @@ const InputTodo = (props) => {
         name="title"
         onChange={onChange}
       />
-      <button className="input-submit">
+      <button type="button" className="input-submit">
         <FaPlusCircle style={{ color: 'darkcyan', fontSize: '20px', marginTop: '2px' }} />
       </button>
     </form>

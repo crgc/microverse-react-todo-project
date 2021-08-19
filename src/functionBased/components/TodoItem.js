@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import styles from './TodoItem.module.css';
@@ -22,7 +23,8 @@ const TodoItem = (props) => {
     textDecoration: 'line-through',
   };
 
-  const { completed, id, title } = props.todo;
+  const { todo } = props;
+  const { completed, id, title } = todo;
 
   const viewMode = {};
   const editMode = {};
@@ -34,7 +36,7 @@ const TodoItem = (props) => {
   }
 
   useEffect(() => () => {
-    console.log('Cleaning up...');
+
   }, []);
 
   return (
@@ -46,7 +48,7 @@ const TodoItem = (props) => {
           checked={completed}
           onChange={() => props.handleChangeProps(id)}
         />
-        <button onClick={() => props.deleteTodoProps(id)}>
+        <button type="button" onClick={() => props.deleteTodoProps(id)}>
           <FaTrash style={{ color: 'orangered', fontSize: '16px' }} />
         </button>
         <span style={completed ? completedStyle : null}>{title}</span>
